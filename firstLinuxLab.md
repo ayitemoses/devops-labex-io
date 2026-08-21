@@ -96,11 +96,38 @@ Congratulations! You've learned the essential file operations in Linux:
 
 
 
+# Files and Directories
+
+## Copy Files and Directories
 
 
+cp -r  ~/.zshrc ~/Desktop/zshrc-copy 
+
+cp -r ~/Code ~/Desktop
+
+ls -l ~/Desktop 
+
+## Rename Files and Directories
+
+mv ~/Desktop/zshrc-copy ~/Desktop/zshrc-move
+
+mv ~/Desktop/zshrc-copy ~/Desktop/zshrc-move
+
+mv ~/Desktop/zshrc-copy ~/Desktop/zshrc-move
+
+ls -l ~/Desktop 
+
+## Remove Files and Directories
+rm -r ~/Desktop/Code-move 
+rm -r ~/Desktop/zshrc-move
+rm -r ~/Desktop/Code-move ~/Desktop/zshrc-move
 
 
-
+### Summary
+Congratulations! You have successfully completed the "Files and Directories" challenge, marking a significant step in your Linux journey. You are now equipped with the essential Linux file management commands: 
+- cp for duplicating files and directories, 
+- mv for both moving and renaming them, 
+- rm for removing them when they are no longer needed.  
 
 
 
