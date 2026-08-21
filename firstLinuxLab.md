@@ -130,7 +130,7 @@ Congratulations! You have successfully completed the "Files and Directories" cha
 - rm for removing them when they are no longer needed.  
 
 
-# File Contents and COmparing
+# File Contents and Comparing
 
 ## Print File Contents 
 cat /tmp/hello
@@ -182,7 +182,23 @@ Congratulations! You've completed the File Contents and Comparing lab. Let's rec
 - diff to compare the contents of files.
 - diff -r to compare entire directories.
 
+# The Manuscript Mystery
+
+## Examining File Contents
+In this step, you'll use cat, head, and tail to inspect two mysterious files.ca
+
+cat /home/labex/project/manuscript_v1.txt 
+
+head -n2 /home/labex/project/manuscript_v2.txt
+
+tail -n1 /home/labex/project/manuscript_v1.txt
+
+tail -n1 /home/labex/project/manuscript_v1.txt
+
+## Comparing the Files
+
+diff /home/labex/project/manuscript_v1.txt /home/labex/project/manuscript_v2.txt 
 
 
-
-
+## Summary
+Congratulations, junior editor! You've successfully applied your newly learned Linux file examination skills to uncover the differences between two versions of a manuscript page. Your ability to use cat, head, tail, and diff has proven invaluable in this editorial mystery.
