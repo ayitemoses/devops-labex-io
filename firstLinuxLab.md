@@ -307,6 +307,28 @@ We saw practical examples of why permissions matter, such as needing execute per
 We clarified the differences between numeric and symbolic notation for chmod and when each might be more appropriate.
 These commands are crucial for maintaining security and controlling access in Linux systems. Remember to always be cautious when changing permissions, especially when using sudo, as incorrect changes can have significant consequences for system security and functionality. Always double-check your commands before executing them, and understand the implications of the changes you're making.
 
+## Practice
+### change File Ownership
+
+touch ~/project/target_file
+
+cd ~/project && ls
+
+sudo chown user1:group1 target_file
+
+ls -l ~/project/target_file 
+-rw-rw-r-- 1 user1 group1 0 Aug 23 10:01 /home/labex/project/target_file
+
+### Set the File Permissions
+
+sudo chmod 760 target_file
+
+ls -l target_file         
+-rwxrw---- 1 user1 group1 0 Aug 23 10:01 target_file
+
+
+
+
 
 
 
