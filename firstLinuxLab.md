@@ -327,8 +327,106 @@ ls -l target_file
 -rwxrw---- 1 user1 group1 0 Aug 23 10:01 target_file
 
 
+# User Account Management
+
+## Creating a New User
+
+sudo useradd joker
+
+- sudo is a command that gives you temporary superuser (administrator) privileges. We use it because creating a new user requires these higher-level permissions.
+- useradd is the command to create a new user.
+- joker is the username we're creating.
 
 
+sudo grep -w 'joker' /etc/passwd # To verify that the user was created, we'll examine the /etc/passwd file:
+joker:x:5001:5001::/home/joker:/bin/sh
 
+Username: joker | Password: x (the actual password is stored securely elsewhere) | User ID: 5001 | Group ID: 5001
+Home Directory: /home/joker, but it hasn't been created yet | Default Shell: /bin/sh
+
+## Creating a User with a Home Directory
+
+sudo useradd -m bob # The -m option tells the system to create a home directory for the user. 
+
+sudo ls -ld /home/bob   
+drwxr-x--- 2 bob bob 57 Aug 23 10:16 /home/bob
+d at the start means it's a directory | rwxr-x--- shows who can read, write, or execute in this directory
+The two bob entries show that both the user and group owner of this directory is bob 
+57 is the size of the directory in bytes | Aug 23 10:16 is when the directory was created
+
+
+## Setting a User Password
+
+sudo passwd joker
+
+Behind the scenes, Linux stores encrypted passwords in a secure file called /etc/shadow. This is more secure than storing them in the /etc/passwd file where anyone could see them.
+
+## Modifying User Properties
+
+sudo usermod -d /home/wayne joker
+
+usermod is the command to modify user account settings
+-d /home/wayne specifies the new home directory
+joker is the user we're modifying
+
+sudo grep -w 'joker' /etc/passwd
+joker:x:5001:5001::/home/wayne:/bin/sh
+
+-w is used to match the whole word, and grep is used to search for the word in the file. You should see that joker's home directory has been updated in the output.
+
+## Changing User Shell
+
+By default, the user 'joker' is using /bin/sh as their shell. While sh (Bourne Shell) is a basic shell that's present on most Unix-like systems, bash (Bourne Again Shell) offers more features and is generally more user-friendly.
+
+sudo usermod -s /bin/bash joker 
+
+sudo grep -w 'joker' /etc/passwd
+joker:x:5001:5001::/home/wayne:/bin/bash
+
+
+## Adding a User to a Group
+
+sudo usermod -aG sudo joker 
+
+usermod is the command to modify user accounts | -aG means "append to Group" (add to a group without removing from other groups) | sudo is the group we're adding the user to | joker is the user we're modifying
+
+groups joker 
+joker : joker sudo # sudo listed among joker's groups.
+
+
+su - joker  # This command switches from your current user (labex) to the joker user.
+
+## Locking and Unlocking User Accounts
+
+sudo passwd -l joker   # Lock the joker account. The -l option locks the password.
+
+Try to switch to the joker user:
+su - joker 
+Password: 
+su: Authentication failure
+
+sudo passwd -u joker   # Unlock the joker account. The -u option unlocks the password.
+
+## Deleting a User
+
+sudo userdel -r bob  # The userdel command deletes user accounts. The -r option removes the user's home directory and mail spool.
+
+Verify that the user has been deleted:
+sudo grep -w 'bob' /etc/passwd
+
+sudo ls -l /home/bob
+ls: cannot access '/home/bob': No such file or directory
+
+## Summary
+Congratulations! You've completed the Linux User Account Management lab. You've learned how to:
+
+- Create new user accounts                                          # useradd
+- Set user passwords                                                # passwd        
+- Modify user properties like home directory and default shell      # usermod -s
+- Add users to groups                                               # usermod -aG
+- Lock and unlock user accounts                                     # passwd -l or -u
+- Delete user accounts                                              # userdel
+
+You've also been introduced to important Linux concepts like the /etc/passwd file, home directories, shells, and user groups. These are fundamental skills for Linux system administration. Remember, in real-world scenarios, always follow your organization's security policies when managing user accounts.
 
 
