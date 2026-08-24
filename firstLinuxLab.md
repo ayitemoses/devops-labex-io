@@ -430,3 +430,52 @@ Congratulations! You've completed the Linux User Account Management lab. You've 
 You've also been introduced to important Linux concepts like the /etc/passwd file, home directories, shells, and user groups. These are fundamental skills for Linux system administration. Remember, in real-world scenarios, always follow your organization's security policies when managing user accounts.
 
 
+# The Joker's Trick
+
+## Creating User Accounts
+
+1. Create a user named joker.
+
+sudo useradd joker
+
+2. Create a user named batman with a home directory at /home/gotham.
+sudo useradd -m batman
+
+sudo usermod -d /home/gotham batman
+
+## Managing User Passwords
+
+1. Set a password for the joker user.
+sudo passwd joker
+
+2. Set a password for the batman user.
+sudo passwd batman
+
+After setting the passwords, you can check the password status: sudo passwd -S joker
+
+
+## Modifying User Accounts
+
+1. Change the joker user's home directory to /home/arkham.
+sudo usermod -d /home/arkham joker
+
+sudo grep joker /etc/passwd
+joker:x:5003:5004::/home/arkham:/bin/sh
+
+2. Change the batman user's shell to /bin/bash.
+
+sudo usermod -s /bin/bash batman
+
+sudo grep batman  /etc/passwd
+batman:x:5004:5005::/home/gotham:/bin/bash
+
+
+## Deleting User Accounts
+
+1. Delete the joker user without removing their home directory.
+sudo userdel joker
+
+
+2. Delete the batman user and their home directory /home/gotham.
+sudo userdel -r batman 
+
