@@ -525,5 +525,62 @@ uname -a >> system_report.txt
 
 uptime >> system_report.txt
 
+# The Digital Architect
+
+## Setting Up the Project Directory Structurels
+
+1. Navigate into the ~/project/phoenix_project directory.
+cd phoenix_project 
+
+2. Create three new subdirectories: src for source code, config for configuration files, and docs for documentation
+mkdir src config docs
+ls -F
+
+## Navigating and Creating Project Files
+
+1. Move the main_app.py file into the src directory.
+
+mv main_app.py src/ 
+2. Move the config.json file into the config directory.
+mv config.json config/
+
+3. Move the README.md file into the docs directory.
+ mv README.md docs/
+
+
+ ## Backing Up Critical Configuration Files
+
+cd config/
+
+cp config.json config.json.bak
+
+## Reorganizing the Team’s Shared Resources
+
+Move the entire shared_docs directory and all of its contents into the ~/project/phoenix_project/docs/ directory.
+
+mv shared_docs phoenix_project/docs 
+
+## Archiving and Removing Outdated Log Files
+
+The tar command uses different options (flags) to control its behavior:
+c: Create a new archive
+z: Compress the archive using gzip
+f: Specify the filename of the archive
+So tar -czf archive.tar.gz file1 file2 creates a new compressed archive named archive.tar.gz containing file1 and file2
+
+1. Navigate to the ~/project/logs directory.
+
+cd ~/project/logs
+
+2. Create a compressed tar archive named old_logs.tar.gz that contains all log files from the year 2023.
+
+tar -czf old_logs.tar.gz app_2023-01-15.log db_2023-02-20.log 
+
+3. After the archive is successfully created, delete the original 2023 log files that you just archived.
+
+rm *_2023-*.log
+
+
+
 
 
