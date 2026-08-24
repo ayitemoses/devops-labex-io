@@ -479,3 +479,51 @@ sudo userdel joker
 2. Delete the batman user and their home directory /home/gotham.
 sudo userdel -r batman 
 
+# The Lay of the Land
+
+
+## First Login and Environment Check
+- Find out the username of the current user. : 
+whoami
+- Display the kernel name of the operating system. : 
+uname
+
+
+## Checking System Information and Uptime
+- Display comprehensive system information including operating system details, kernel version, and hardware architecture.
+uname -a 
+
+- Check how long the system has been running and current system load.
+uptime
+
+## Gathering User and Group Details
+- Display the detailed user and group information for your current user account.
+id
+
+uid=5000(labex) gid=5000(labex) groups=5000(labex),27(sudo),121(ssl-cert),5002(public)
+
+- uid=5000(labex): Your user ID is 5000 with username "labex"
+- gid=5000(labex): Your primary group ID is 5000 with group name "labex"
+- groups=...: You belong to multiple groups including "sudo" (administrative privileges), "ssl-cert" (SSL certificate access), and "public" (shared resources)
+
+## Monitoring Real-time System Performance
+
+- provides a dynamic, real-time view of a running system. It refreshes automatically.
+top
+
+
+## Generating a System Status Report
+
+
+- Create a file named system_report.txt in your current directory (~/project).
+touch system_report.txt
+
+- The file must contain the output of the whoami, uname -a (all system information), and uptime commands.
+whoami > system_report.txt
+
+uname -a >> system_report.txt
+
+uptime >> system_report.txt
+
+
+
