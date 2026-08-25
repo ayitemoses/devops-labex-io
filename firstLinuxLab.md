@@ -706,5 +706,75 @@ Creating Files and Basic Permissions: You secured sensitive project keys with pr
 Ownership Management: You expertly assigned ownership to Sarah's development team and technical leadership.
 Directory Security: You balanced access and security for the main project infrastructure.
 Advanced Permissions: You configured setgid permissions to ensure collaborative team workspaces with automatic group ownership inheritance.
-Collaborative Workspaces: You configured team collaboration spaces that maintain security while enabling productivity.
-These advanced security skills have proven your readiness for senior system administration responsibilities. Tomorrow, you'll take on your final challenge as the Keeper of the Keys, managing the human element of Project Phoenix's security by controlling user access to the system!
+
+# The Keeper of the Keys
+
+## Onboarding a New Developer to the System
+
+Create a new user account for Brenda Smith.
+
+sudo useradd b.smith
+
+sudo grep -w b.smith /etc/passwd
+b.smith:x:5002:5004::/home/b.smith:/bin/sh
+
+The user account will be created with a system-assigned user ID and group ID. You can verify the account exists and check its details using:
+
+id b.smith 
+uid=5002(b.smith) gid=5004(b.smith) groups=5004(b.smith)
+
+## Creating a Dedicated Home Directory for the New User
+
+Create a home directory for the user b.smith located at /home/b.smith.
+
+sudo useradd -m b.smith
+
+sudo ls -la /home/b.smith
+
+## Assigning an Initial Password for the New User
+
+Set a password for the user b.smith.
+
+sudo passwd b.smith 
+
+sudo grep b.smith /etc/shadow
+b.smith:$y$j9T$e52hXwvTC5lCsoo6zKJXF0$VHKiDpz5PJgmqBQEksBP9qjSCb3M1aU13XdFNPtyEq/:20690:0:99999:7:::
+
+
+## Adding the New Developer to the "developers" Group
+
+Add the user b.smith to the developers group.
+
+sudo usermod -aG developers b.smith
+
+groups b.smith 
+b.smith : b.smith developers
+
+
+## Temporarily Disabling a Departing Employee’s Account
+
+Lock the user account for j.doe to prevent logins.
+
+sudo usermod -L j.doe 
+
+sudo passwd -l j.doe 
+passwd: password expiry information changed.
+
+sudo grep "^j.doe" /etc/shadow
+j.doe:!:20690:0:99999:7:::
+
+Notice the exclamation mark (!) at the beginning of the password field - this indicates the account is locked. The original password hash is preserved after the ! for potential future unlocking.
+
+## Summary
+Congratulations, Keeper of the Keys! You have successfully completed your incredible first week at LabEx Corporation and secured Project Phoenix for its final push to completion.
+
+Throughout this transformative week, you've evolved from a new junior system administrator into a trusted guardian of TechNova's most critical systems. In your final challenge, you mastered essential user management commands:
+
+- Created a new user account for the senior developer leading Project Phoenix's completion.
+- Configured secure home directories for critical team members.
+- Implemented robust password policies using passwd.
+- Managed group memberships to ensure proper access to Project Phoenix resources.
+- Secured the system by disabling unauthorized access while preserving audit trails.
+From initial reconnaissance to digital architecture, log investigation, security implementation, and finally user management—you've demonstrated the complete skill set of a professional System Administrator. The CTO has confirmed your permanent position and is already discussing promotion opportunities.
+
+Project Phoenix is now in safe hands, and TechNova's future is secure thanks to your dedication and expertise!
