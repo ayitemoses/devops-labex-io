@@ -580,7 +580,66 @@ tar -czf old_logs.tar.gz app_2023-01-15.log db_2023-02-20.log
 
 rm *_2023-*.log
 
+# The Log Investigator
+
+## Reviewing Application Log File Contents
+
+Filter the ~/project/logs/app.log file to find all lines containing the word ERROR.
+sudo grep -w "ERROR" logs/app.log
+
+Save the filtered lines to a new file named ~/project/error_report.txt.
+
+sudo grep -w "ERROR" logs/app.log > error_report.txt
+
+## Investigating System Boot Messages
+
+Examine the system's kernel messages for any lines related to fail or error.
+Save these findings into a file named ~/project/boot_issues.txt.
+
+sudo dmesg   
+
+sudo dmesg | grep -E 'fail|error' > boot_issues.txt
 
 
+The dmesg command displays kernel messages. You can "pipe" its output to another command for filtering.
+The pipe operator | sends the output of one command to the input of another.
+The grep command's -i option makes the search case-insensitive.
+To search for multiple patterns at once (like fail OR error), you can use grep -E 'pattern1|pattern2'.
+Note: If you encounter a "Operation not permitted" error, try running the command with sudo to gain the necessary privileges.
 
 
+## Examining the Web Server Configuration File
+
+Search the web server configuration file at ~/project/config/nginx.conf.
+Find the line containing the worker_processes directive.
+Append this line to the ~/project/error_report.txt file you created in the first step.
+
+sudo grep -w 'worker_processes' ~/project/config/nginx.conf >> ~/project/error_report.txt 
+
+## Comparing Staging and Production Configuration Files
+
+Compare the staging configuration file ~/project/config/staging/app.conf with the production configuration file ~/project/config/production/app.conf.
+Save the differences to a new file named ~/project/config_diff.txt.
+
+diff config/staging/app.conf config/production/app.conf > config_diff.txt
+
+cat config_diff.txt 
+
+## Verifying Directory Consistency Between Servers
+
+You have two directories: /home/labex/project/server1_files (representing the staging server) and /home/labex/project/server2_files (representing the production server).
+Compare these two directories to find out which files are unique to server1_files.
+Save the complete comparison output to a file named /home/labex/project/missing_files.txt.
+
+diff -r /home/labex/project/server1_files /home/labex/project/server2_files > /home/labex/project/missing_files.txt
+
+
+##Summary
+Exceptional detective work! You have successfully identified the root causes of Project Phoenix's critical failures and provided Sarah Chen and the development team with actionable intelligence to resolve the issues.
+
+Through your systematic investigation, you've mastered essential troubleshooting commands:
+
+- grep: To filter log files and extract critical error information.
+- dmesg: To investigate system-level hardware and kernel issues.
+- diff: To compare configuration files and identify discrepancies between environments.
+- Command pipelines and redirection: To efficiently process and document your findings.
