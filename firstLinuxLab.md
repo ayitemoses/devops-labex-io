@@ -643,3 +643,68 @@ Through your systematic investigation, you've mastered essential troubleshooting
 - dmesg: To investigate system-level hardware and kernel issues.
 - diff: To compare configuration files and identify discrepancies between environments.
 - Command pipelines and redirection: To efficiently process and document your findings.
+
+# The Fortress Guardian
+
+## Creating a Secure File for a New Project
+
+Create a new, empty file named project_keys.txt inside the ~/project/phoenix_project directory.
+Set the permissions for this file so that only the owner has read and write access, and no one else (not even users in the same group) has any access.
+
+You can create an empty file using the touch command.
+Remember the numeric values for permissions: read (4), write (2), and execute (1).
+The final permission should be 600 (read+write for owner, nothing for group and others).
+
+touch ~/project/phoenix_project/project_keys.txt 
+
+chmod 600 phoenix_project/project_keys.txt
+
+## Assigning Ownership of Project Resources
+
+Change the owner of the ~/project/phoenix_project directory and all its contents to the user dev_lead.
+Change the group owner of the ~/project/phoenix_project directory and all its contents to the developers group.
+
+sudo chown -R dev_lead:developers ~/project/phoenix_project
+
+ls -ld ~/project/phoenix_project 
+
+ls -l ~/project/phoenix_project 
+
+## Securing the Main Project Directory
+
+Set the permissions for the ~/project/phoenix_project directory.
+
+The owner (dev_lead) must have read, write, and execute permissions.
+The group (developers) must have read and execute permissions.
+Others must have no permissions.
+Use the chmod command to apply these permissions to the ~/project/phoenix_project directory itself (not recursively).
+Since the directory is owned by dev_lead, you may need to use sudo to change permissions.
+
+sudo chmod 750 ~/project/phoenix_project 
+ls -ld ~/project/phoenix_project
+
+## Setting Up Collaborative Permissions for the Dev Team
+
+Set a special permission on the ~/project/phoenix_project/src directory that forces all new files and subdirectories created within it to inherit the group ownership from the src directory itself (which is developers).
+
+This special permission is called the "set group ID" or setgid bit.
+You can apply the setgid bit using either symbolic (g+s) or numeric notation.
+In numeric notation, the setgid bit has a value of 2. It is placed before the standard three permission digits (e.g., 2770).
+
+ls -ld ~/project/phoenix_project/src
+drwxrws--- 2 dev_lead developers 6 Aug 25 11:51 /home/labex/project/phoenix_project/src
+
+The s in the group execute position indicates the setgid bit is set and the group has execute permission.
+
+
+## Summary
+Outstanding work, Fortress Guardian! You have successfully built an impenetrable security foundation for Project Phoenix. The CTO and Sarah Chen are amazed by your comprehensive security implementation. The project directory is now a fortress that will protect TechNova's intellectual property while enabling seamless collaboration.
+
+Throughout this challenge, you've mastered critical Linux security skills:
+
+Creating Files and Basic Permissions: You secured sensitive project keys with precise permission controls.
+Ownership Management: You expertly assigned ownership to Sarah's development team and technical leadership.
+Directory Security: You balanced access and security for the main project infrastructure.
+Advanced Permissions: You configured setgid permissions to ensure collaborative team workspaces with automatic group ownership inheritance.
+Collaborative Workspaces: You configured team collaboration spaces that maintain security while enabling productivity.
+These advanced security skills have proven your readiness for senior system administration responsibilities. Tomorrow, you'll take on your final challenge as the Keeper of the Keys, managing the human element of Project Phoenix's security by controlling user access to the system!
