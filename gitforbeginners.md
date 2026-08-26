@@ -38,3 +38,27 @@ Félicitations, voyageur temporel ! Vous venez de terminer votre première avent
 - Comment créer des fichiers et les préparer pour un commit avec git add.
 - Comment créer un commit (un point de sauvegarde temporel) avec git commit.
 - Comment consulter l'historique de votre projet avec git log.
+
+# Opération Saut Quantique
+
+## Initialisation et validation de votre dépôt secret
+Tâches
+1. Créez un nouveau répertoire nommé quantum-leap dans le dossier ~/project.
+mkdir quantum-leap
+
+2. Initialisez un nouveau dépôt Git dans le répertoire quantum-leap.
+
+cd quantum-leap && git init
+
+3. Créez un fichier nommé classified.txt contenant le texte "The flux capacitor requires 1.21 gigawatts of power.".
+echo "The flux capacitor requires 1.21 gigawatts of power." > classified.txt
+
+4. Indexez le fichier classified.txt pour la validation.
+git add classified.txt
+
+5. Validez le fichier indexé avec le message "Add top-secret flux capacitor information".
+git commit -m "Add top-secret flux capacitor information"
+
+
+
+
